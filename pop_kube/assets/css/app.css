@@ -1,0 +1,56 @@
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+main.container {
+  flex: 1;
+  overflow: hidden;
+}
+footer {
+  border-top: 1px solid #e1e1e1;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#pop-clicker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+}
+#pop-clicker h1 {
+  text-align: center;
+  font-family: monospace;
+}
+#pop-clicker h1.count {
+  font-size: 4rem;
+}
+#pop-clicker img {
+  flex: 1;
+  max-width: 80%;
+	transition: transform 0.25s;
+}
+#pop-clicker img:hover {
+  animation: shine 2s cubic-bezier(1, 0, 0, 1) infinite;
+}
+#pop-clicker img:active {
+  transform: scale(1.75);
+}
+
+@keyframes shine {
+  0% {
+    filter: brightness(100%);
+  }
+  50% {
+    filter: brightness(150%);
+  }
+  100% {
+    filter: brightness(100%);
+  }
+}

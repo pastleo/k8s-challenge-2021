@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+
+    # after https:
+    cert-manager.io/cluster-issuer: my-letsencrypt
+spec:
+  rules:
+  - host: "k8s-challenge-1.pastleo.me"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: nginx-svc
+            port:
+              number: 80
+
+  # after https:
+  tls:
+  - hosts:
+    - k8s-challenge-1.pastleo.me
+    secretName: k8s-challenge-1

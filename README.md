@@ -6,9 +6,9 @@ The DigitalOcean Kubernetes Challenge at 2021, [campaign page](https://www.digit
 ## Roadmap
 
 * [x] build a Phoenix liveView demo project
-* [ ] create a Kubernetes Cluster in DigitalOcean
-* [ ] create a scalable database on Kubernetes
-* [ ] make Phoenix app scallable as well
+* [x] create a Kubernetes Cluster in DigitalOcean
+* [x] create a scalable database on Kubernetes
+* [x] make Phoenix app scallable as well
 * [ ] wire everything up to production for demonstration
 * [ ] write up about the project
 * [ ] submit a PR against [the DigitalOcean Kubernetes Challenge repo](https://github.com/do-community/kubernetes-challenge)

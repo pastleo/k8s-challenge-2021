@@ -4,21 +4,20 @@ metadata:
   name: mypostgres
 
 spec:
-   replicas: 3
-   image: postgres:14.1
+  replicas: 3
+  image: postgres:14.1
+  database:
+    size: 1Gi
 
-   database:
-      size: 1Gi
+  env:
+    - name: POSTGRES_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: mypostgres-secret
+          key: superUserPassword
 
-   env:
-      - name: POSTGRES_PASSWORD
-        valueFrom:
-           secretKeyRef:
-              name: mypostgres-secret
-              key: superUserPassword
-
-      - name: POSTGRES_REPLICATION_PASSWORD
-        valueFrom:
-           secretKeyRef:
-              name: mypostgres-secret
-              key: replicationUserPassword
+    - name: POSTGRES_REPLICATION_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: mypostgres-secret
+          key: replicationUserPassword

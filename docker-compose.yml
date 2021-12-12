@@ -7,7 +7,7 @@ services:
     ports:
       - "127.0.0.1:5432:5432"
   pop-kube:
-    image: chgu82837/phoenix-pop-kube:0.1.0
+    image: chgu82837/phoenix-pop-kube:0.1.1
     build: ./pop_kube
     depends_on: ["postgres"]
     environment:

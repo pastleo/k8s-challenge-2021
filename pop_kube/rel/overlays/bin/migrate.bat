@@ -1,0 +1,1 @@
+call "%~dp0\pop_kube" eval PopKube.Release.migrate

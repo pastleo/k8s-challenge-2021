@@ -1,0 +1,24 @@
+version: '3.6'
+services:
+  postgres:
+    image: postgres:14.1-alpine
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust # no password required for development
+    ports:
+      - "127.0.0.1:5432:5432"
+  pop-kube:
+    image: chgu82837/phoenix-pop-kube:0.1.0
+    build: ./pop_kube
+    depends_on: ["postgres"]
+    environment:
+      DATABASE_URL: "postgres://postgres:password@postgres/pop_kube"
+      SECRET_KEY_BASE: "9m/uL4JbdJjVWqEioFQKv76OxnNJnUk1CnNedhI2MUlwhPR+3NecUcn91N64xTWm"
+      PHX_HOST: "localhost"
+    ports:
+      - "127.0.0.1:4000:4000"
+
+# docker-compose up -d postgres
+# psql -h localhost -U postgres
+#   create database pop_kube;
+#   \q
+# docker-compose run --rm pop-kube ./bin/migrate

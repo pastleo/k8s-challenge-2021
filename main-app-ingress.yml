@@ -1,27 +1,27 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-ingress
+  name: main-app-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
 
-    # after https:
-    cert-manager.io/cluster-issuer: my-letsencrypt
+    # https:
+    cert-manager.io/cluster-issuer: main-letsencrypt-issuer
 spec:
   rules:
-  - host: "k8s-challenge-1.pastleo.me"
+  - host: "popkube.pastleo.me"
     http:
       paths:
       - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: nginx-svc
+            name: main-app-svc
             port:
               number: 80
 
-  # after https:
+  # https:
   tls:
   - hosts:
-    - k8s-challenge-1.pastleo.me
-    secretName: k8s-challenge-1
+    - popkube.pastleo.me
+    secretName: main-letsencrypt-secret-popkube.pastleo.me

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main-app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: main-app
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: main-app
+    spec:
+      containers:
+      #- name: main-app-nginx # as stateless application
+        #image: nginx:latest
+        #ports:
+        #- containerPort: 80
+      - name: phoenix-pop-kube
+        image: chgu82837/phoenix-pop-kube:0.1.1
+        ports:
+        - containerPort: 4000
+        env:
+        - name: PHX_HOST
+          value: "popkube.pastleo.me"
+        - name: PORT
+          value: "4000"
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: main-postgres-app-secret
+              key: password
+        - name: DATABASE_URL
+          value: "postgres://app:$(DATABASE_PASSWORD)@main-postgres.default.svc.cluster.local/pop_kube_prod"
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              name: main-app-key-base-secret
+              key: password

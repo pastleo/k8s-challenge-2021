@@ -1,1 +1,1 @@
-export KUBECONFIG=./k8s-challenge-2021-kubeconfig.yaml
+export KUBECONFIG=./popkube-2021-k8s-challenge-kubeconfig.yaml

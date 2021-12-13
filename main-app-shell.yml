@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: main-app-shell
+spec:
+  containers:
+  - name: phoenix-pop-kube-shell
+    image: chgu82837/phoenix-pop-kube:0.1.1
+    command: ["tail", "-f", "/dev/null"]
+    env:
+    - name: DATABASE_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: main-postgres-app-secret
+          key: password
+    - name: DATABASE_URL
+      value: "postgres://app:$(DATABASE_PASSWORD)@main-postgres.default.svc.cluster.local/pop_kube_prod"
+    - name: SECRET_KEY_BASE
+      valueFrom:
+        secretKeyRef:
+          name: main-app-key-base-secret
+          key: password
+
+# kubectl apply -f main-app-shell.yml
+# kubectl exec --stdin --tty main-app-shell -- /bin/bash
+#   ./bin/migrate # or anything inside phoenix-pop-kube app

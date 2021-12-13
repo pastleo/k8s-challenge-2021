@@ -13,8 +13,8 @@ The DigitalOcean Kubernetes Challenge at 2021, [campaign page](https://www.digit
 * [x] make Phoenix app scallable as well
 * [x] wire everything up to production for demonstration
 * [x] write up about the project
-* [ ] submit a PR against [the DigitalOcean Kubernetes Challenge repo](https://github.com/do-community/kubernetes-challenge)
-* [ ] [filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSe-CT6ynhORAL04GqsvrvYn8d_6bUJuHUsMNFRG8L9mVxE1IA/viewform) to complete the challenge
+* [x] submit a PR against [the DigitalOcean Kubernetes Challenge repo](https://github.com/do-community/kubernetes-challenge)
+* [x] [filling out this form](https://docs.google.com/forms/d/e/1FAIpQLSe-CT6ynhORAL04GqsvrvYn8d_6bUJuHUsMNFRG8L9mVxE1IA/viewform) to complete the challenge
 
 ---
 
@@ -42,6 +42,7 @@ This web application is built with [Phoenix -- Elixir web framework](https://www
 
 > BTW, my local machine is ArchLinux,
 >> [`kubectl`](https://archlinux.org/packages/community/x86_64/kubectl/) and [`helm`](https://archlinux.org/packages/community/x86_64/helm/) can be installed by [`pacman`](https://wiki.archlinux.org/title/pacman): `pacman -S kubectl helm`
+>> 
 >> LENS provides `Linux x64 (AppImage)` build, download from its website and use [`appimagelauncher`](https://github.com/TheAssassin/AppImageLauncher) ([AUR available](https://aur.archlinux.org/packages/appimagelauncher/)) to integrate into system
 
 ### 2. create a Kubernetes cluster on DigitalOcean

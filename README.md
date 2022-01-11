@@ -531,3 +531,34 @@ That's it! a complete scalable SQL database and scalable webapp is deployed at:
 despite inserting a click into database, one click will be immediately broadcasted to connected users within the same `PopKube` web server only. in the following screencast we can see left 2 windows are accessing the same web server while the other is not:
 
 ![](https://i.imgur.com/PM1NVrX.gif)
+
+---
+
+## Deploy to [Heroku](https://www.heroku.com/)
+
+> Because kubernetes deployment cost too much as a hobby, demo app was re-deployed to heroku on 2022/1/11
+
+### [https://popkube.herokuapp.com/](https://popkube.herokuapp.com/)
+
+* https://devcenter.heroku.com/articles/container-registry-and-runtime
+* https://devcenter.heroku.com/articles/heroku-postgresql
+
+```bash
+cd path/to/repo
+heroku auth:whoami
+heroku login # if not login already
+heroku container:login # this changes ~/.docker/config.json to point docker registry to heroku's
+heroku git:remote --app [heroku-app]
+
+cd pop_kube
+heroku container:push web # build docker image and push to heroku's docker registry
+
+heroku addons:create heroku-postgresql:hobby-dev # DATABASE_URL env/config var will be set automatically
+heroku config:set "DATABASE_SSL=true"
+heroku config:set "SECRET_KEY_BASE=$(mix phx.gen.secret)"
+
+heroku container:release web
+heroku run ./bin/migrate
+
+heroku open
+```

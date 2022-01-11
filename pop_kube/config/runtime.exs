@@ -21,10 +21,11 @@ if config_env() == :prod do
       """
 
   maybe_ipv6 = if System.get_env("ECTO_IPV6"), do: [:inet6], else: []
+  database_ssl = if System.get_env("DATABASE_SSL"), do: true, else: false
 
   config :pop_kube, PopKube.Repo,
-    # ssl: true,
     url: database_url,
+    ssl: database_ssl,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
     socket_options: maybe_ipv6
 
